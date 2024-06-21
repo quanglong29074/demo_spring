@@ -1,63 +1,88 @@
 package com.example.demo_sprimg.entity;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Student")
+@Table(name = "student")
 public class Student {
-    @Column(name = "email")
-    private String Email;
     @Id
-    @Column(name = "first_name")
-    private String FirstName;
-    @Column(name = "last_name")
-    private String LastName;
-    @Column(name = "id_class")
-    private int IDClass;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int ID;
+    private int id;
+
+    @Column(name = "email", length = 64)
+    private String email;
+
+    @Column(name = "first_name", length = 255)
+    private String firstName;
+
+    @Column(name = "last_name", length = 255)
+    private String lastName;
+
+    @ManyToOne
+    @JoinColumn(name = "id_class", referencedColumnName = "id_class")
+    private ClassRoom classRoom;
+
+    public Student() {
+    }
+
+
+    public Student(int id, String email, String firstName, String lastName, ClassRoom classRoom) {
+        this.id = id;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.classRoom = classRoom;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
-    public int getIDClass() {
-        return IDClass;
+    public ClassRoom getClassRoom() {
+        return classRoom;
     }
 
-    public void setIDClass(int IDClass) {
-        this.IDClass = IDClass;
+    public void setClassRoom(ClassRoom classRoom) {
+        this.classRoom = classRoom;
     }
-public Student(){}
-    public Student(String email, String firstName, String lastName, int IDClass, int ID) {
-        Email = email;
-        FirstName = firstName;
-        LastName = lastName;
-        this.IDClass = IDClass;
-        this.ID = ID;
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", classRoom=" + classRoom +
+                '}';
     }
 }

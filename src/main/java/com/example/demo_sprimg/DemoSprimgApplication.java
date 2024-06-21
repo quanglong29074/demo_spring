@@ -27,14 +27,10 @@ public class DemoSprimgApplication {
 	}
 
 	private static void addNewClass(ClassRoomDAO classRoomDAO){
-		ClassRoom classRoom = new ClassRoom();
-		classRoom.setClassName("12A1");
-		classRoom.setNumberMember(22);
-		classRoomDAO.saveClassRoom(classRoom);
+
 	}
 
 	private static void getClassById(ClassRoomDAO classRoomDAO){
-		ClassRoom classRoom = classRoomDAO.getClassRoomById(1l);
-		System.out.println(classRoom.toString());
+
 	}
 }

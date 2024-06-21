@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public class ClassRoomDAO implements IClassRoomDAO {
     private EntityManager entityManager;
-@Autowired
+    @Autowired
     public ClassRoomDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
@@ -24,7 +24,7 @@ public class ClassRoomDAO implements IClassRoomDAO {
     }
 
     public ClassRoom getClassRoomById(long id){
-       return  this.entityManager.find(ClassRoom.class, id);
+        return  this.entityManager.find(ClassRoom.class, id);
     }
 
     public List<ClassRoom> getAllClassRooms( ){

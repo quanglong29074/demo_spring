@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:include="/include/head"></th:block>
+</head>
+<body>
+<th:block th:include="/include/navbar"></th:block>
+
+<form th:action="@{/students/add}" th:object="${student}" method="post">
+  <input type="text" name="email" th:field="*{email}" placeholder="email">
+  <input type="text" name="firstName" th:field="*{firstName}" placeholder="firstName">
+  <input type="text" name="lastName" th:field="*{lastName}" placeholder="lastName">
+  <!-- Dropdown for ClassRoom selection -->
+  <select id="className" name="className" th:field="*{classRoom.idClass}">
+    <option th:each="classRoom : ${classRooms}" th:value="${classRoom.idClass}" th:text="${classRoom.className}"></option>
+  </select>
+
+  <button type="submit">Add Class</button>
+
+</form>
+
+<
+<th:block th:include="/include/footer"></th:block>
+
+<h1>Hello</h1>
+</body>
+</html>

@@ -43,7 +43,7 @@ public class SubjectController {
         Optional<Subject> subject = subjectService.getSubjectByCode(code);
         if (subject.isPresent()) {
             Subject updatedSubject = subject.get();
-            updatedSubject.setName(subjectDetails.getName());
+            updatedSubject.setName(subjectDetails.getName() != null ? subjectDetails.getName() : updatedSubject.getName());
             updatedSubject.setCredit(subjectDetails.getCredit());
             subjectService.updateSubject(updatedSubject);
             return ResponseEntity.ok(updatedSubject);

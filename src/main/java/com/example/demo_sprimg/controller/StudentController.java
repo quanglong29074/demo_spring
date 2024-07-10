@@ -5,7 +5,10 @@ import com.example.demo_sprimg.entity.Student;
 import com.example.demo_sprimg.repository.StudentRepository;
 import com.example.demo_sprimg.service.ClassRoomService;
 import com.example.demo_sprimg.service.StudentService;
+import com.example.demo_sprimg.sto.StudentSTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,18 +16,24 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/students")
 public class StudentController {
     private final ClassRoomService classRoomService;
 
     private final StudentService studentService;
-
     @Autowired
     public StudentController(StudentService studentService,ClassRoomService classRoomService) {
         this.studentService = studentService;
         this.classRoomService = classRoomService;
     }
+
+    @GetMapping
+    public ResponseEntity<List<Student>> getAllStudents() {
+        List<Student> students = studentService.getAllStudents();
+        return new ResponseEntity<>(students, HttpStatus.OK);
+    }
+
 
     @GetMapping("/list")
     public String listStudents(Model model) {
